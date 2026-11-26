@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Лаба7</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background: #f5f5f5;
+}
+#app {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+}
+h1, h2 {
+    text-align: center;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background: #eee;
+}
+tbody tr {
+    cursor: pointer;
+}
+tbody tr:hover {
+    background: #f0f0f0;
+}
+tbody tr.selected {
+    background: #dcecff;
+}
+button {
+    margin-top: 12px;
+    padding: 8px 14px;
+    cursor: pointer;
+}
+.form-row {
+    margin: 12px 0;
+}
+.form-row label {
+    display: block;
+    margin-bottom: 5px;
+}
+input[type="text"],
+input[type="date"],
+input[type="tel"],
+input[type="email"],
+select,
+textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 7px;
+}
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+.technologies label,
+.rating label {
+    display: inline-block;
+    margin-right: 12px;
+}
+</style>
+</head>
+<body>
+<div id="app">
+    <h1>Лаба7</h1>
+    <review-list
+        :reviews="reviews"
+        :selected-index="selectedIndex"
+        :average-rating="averageRating"
+        @select="selectReview"
+        @add="addReview">
+    </review-list>
+    <hr>
+    <review-form
+        v-if="selectedIndex !== null"
+        v-model="selectedReview">
+    </review-form>
+</div>
+<script type="module" src="./js/app.js"></script>
+</body>
+</html>
