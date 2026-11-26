@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Лаба6</title>
+    <style>
+        #app {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="date"],
+        input[type="tel"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 7px;
+            box-sizing: border-box;
+        }
+        .technologies label {
+            display: inline-block;
+            margin-right: 12px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        .review {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+        }
+        .review p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <h1>Отзыв о сайте</h1>
+    <div class="form-group">
+        <label for="name">Имя пользователя:</label>
+        <input type="text" id="name" v-model="review.name">
+    </div>
+    <div class="form-group">
+        <label for="birthday">Дата рождения:</label>
+        <input type="date" id="birthday" v-model="review.birthday">
+    </div>
+    <div class="form-group">
+        <label for="phone">Телефон:</label>
+        <input type="tel" id="phone" v-model="review.phone">
+    </div>
+    <div class="form-group">
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" v-model="review.email">
+    </div>
+    <div class="form-group technologies">
+        <label>Изучаемые технологии:</label>
+        <label>
+            <input type="checkbox" value="HTML" v-model="review.technologies">
+            HTML
+        </label>
+        <label>
+            <input type="checkbox" value="CSS" v-model="review.technologies">
+            CSS
+        </label>
+        <label>
+            <input type="checkbox" value="JavaScript" v-model="review.technologies">
+            JavaScript
+        </label>
+        <label>
+            <input type="checkbox" value="VueJS" v-model="review.technologies">
+            VueJS
+        </label>
+    </div>
+    <div class="form-group">
+        <label for="rating">Оценка сайта:</label>
+        <select id="rating" v-model="review.rating">
+            <option value="" disabled>Выберите оценку</option>
+            <option v-for="number in 10" :value="number - 1">
+                {{ number - 1 }}
+            </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="comment">Отзыв:</label>
+        <textarea id="comment" rows="5" v-model="review.comment"></textarea>
+    </div>
+    <hr>
+    <div class="review">
+        <h2>Ваш отзыв</h2>
+        <p><b>Имя:</b> {{ review.name }}</p>
+        <p><b>Дата рождения:</b> {{ review.birthday }}</p>
+        <p><b>Телефон:</b> {{ review.phone }}</p>
+        <p><b>E-mail:</b> {{ review.email }}</p>
+        <p><b>Изучаемые технологии:</b> {{ review.technologies.join(", ") }}</p>
+        <p><b>Оценка сайта:</b> {{ review.rating === "" ? "Не выбрана" : review.rating }}</p>
+        <p><b>Текст отзыва:</b></p>
+        <p>{{ review.comment }}</p>
+    </div>
+</div>
+<script type="module">
+    import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+    createApp({
+        data() {
+            return {
+                review: {
+                    name: "",
+                    birthday: "",
+                    phone: "",
+                    email: "",
+                    technologies: [],
+                    rating: "",
+                    comment: ""
+                }
+            };
+        }
+    }).mount("#app");
+</script>
+</body>
+</html>
